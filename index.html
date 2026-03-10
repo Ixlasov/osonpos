@@ -4,53 +4,38 @@
 <meta charset="UTF-8">
 <title>OsonPos 1.1</title>
 <link rel="icon" type="image/png" href="icon.png">
-
 <style>
-
-html, body{
-margin:0;
-padding:0;
-height:100%;
-overflow:hidden;
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow:hidden;
 }
 
-iframe{
-width:100%;
-height:100%;
-border:none;
-transition:0.3s;
+iframe {
+  width:100%;
+  height:100%;
+  border:none;
 }
 
-/* floating tugma */
-
-#floatBtn{
-position:fixed;
-top:20px;
-right:20px;
-width:60px;
-height:60px;
-background:#2196F3;
-color:white;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-cursor:pointer;
-user-select:none;
-z-index:9999;
+/* Floating tugma */
+#floatBtn {
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:60px;
+  height:60px;
+  background:#2196F3;
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+  user-select:none;
+  z-index:9999;
 }
-
-.small{
-width:400px !important;
-height:300px !important;
-position:fixed;
-bottom:20px;
-right:20px;
-border-radius:10px;
-box-shadow:0 0 15px rgba(0,0,0,0.3);
-}
-
 </style>
 </head>
 
@@ -58,42 +43,38 @@ box-shadow:0 0 15px rgba(0,0,0,0.3);
 
 <iframe id="posFrame" src="https://script.google.com/macros/s/AKfycbzyRsimUAklh_qCm7l1oD1dp7iM9zlfCbeyjqZbR8K_V-H4oihd0MSR38AVm6JkLlTAJA/exec?embedded=true"></iframe>
 
-<div id="floatBtn">⤢</div>
+<!-- Suzib yuruvchi tugma -->
+<div id="floatBtn">☰</div>
 
 <script>
+let btn = document.getElementById("floatBtn");
 
-let btn = document.getElementById("floatBtn")
-let frame = document.getElementById("posFrame")
-
-/* kichraytirish / kattalashtirish */
-
-btn.onclick = function(){
-frame.classList.toggle("small")
-}
-
-/* tugmani sudrash */
-
-let isDragging = false
-let offsetX, offsetY
+/* Tugmani sudrash */
+let isDragging = false;
+let offsetX, offsetY;
 
 btn.addEventListener("mousedown", function(e){
-isDragging = true
-offsetX = e.clientX - btn.offsetLeft
-offsetY = e.clientY - btn.offsetTop
-})
+  isDragging = true;
+  offsetX = e.clientX - btn.offsetLeft;
+  offsetY = e.clientY - btn.offsetTop;
+});
 
 document.addEventListener("mousemove", function(e){
-if(isDragging){
-btn.style.left = (e.clientX - offsetX) + "px"
-btn.style.top = (e.clientY - offsetY) + "px"
-btn.style.right = "auto"
-}
-})
+  if(isDragging){
+    btn.style.left = (e.clientX - offsetX) + "px";
+    btn.style.top = (e.clientY - offsetY) + "px";
+    btn.style.right = "auto"; // right ni avtomatik tozalash
+  }
+});
 
 document.addEventListener("mouseup", function(){
-isDragging = false
-})
+  isDragging = false;
+});
 
+/* Tugma bosilganda nima bo‘lishi */
+btn.addEventListener("click", function(){
+  alert("Tugma bosildi, ammo iframe full screen bo‘lib qoladi!");
+});
 </script>
 
 </body>
