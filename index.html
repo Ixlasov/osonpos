@@ -161,12 +161,17 @@
     
     // ESC tugmasi bosilganda
     document.addEventListener('fullscreenchange', function() {
-        if (!document.fullscreenElement) {
-            document.getElementById('expandIcon').style.display = 'block';
-            document.getElementById('shrinkIcon').style.display = 'none';
-            isFullscreen = false;
-        }
-    });
+    const expandIcon = document.getElementById('expandIcon');
+    const shrinkIcon = document.getElementById('shrinkIcon');
+
+    // Agar ESC bosilib fullscreendan chiqsa
+    if (!document.fullscreenElement) {
+        // Faqat ikonlarni yangilaymiz, iframe kichraymaydi
+        expandIcon.style.display = 'block';
+        shrinkIcon.style.display = 'none';
+        isFullscreen = false;
+    }
+});
 </script>
 
 </body>
